@@ -1,4 +1,4 @@
-import Brand from "../models/Brand.js"; // ফাইল নাম ঠিক রাখো
+import Brand from "../models/Brand.js";
 
 // GET all brands
 export const getAllBrands = async (req, res) => {
