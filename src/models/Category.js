@@ -1,0 +1,29 @@
+// src/models/category.js
+import mongoose from 'mongoose';
+
+const categorySchema = new mongoose.Schema({
+  title: { 
+    type: String, 
+    required: true 
+  },
+  slug: { 
+    type: String, 
+    required: true,
+    lowercase: true ,
+    index: true,
+  },
+  description: { 
+    type: String 
+  },
+  range: { 
+    type: String, 
+  },
+  image: { 
+    type: String 
+  }
+}, { 
+  timestamps: true 
+});
+
+const Category = mongoose.model('Category', categorySchema);
+export default Category;
