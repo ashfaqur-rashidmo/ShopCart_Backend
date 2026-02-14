@@ -12,22 +12,22 @@ const app = express();
 //   credentials: true,
 // }));
 
-const allowedOrigins = [
-  "http://localhost:3000", 
-  "https://shop-cart-frontend-eedd-oct0yxnah-ashfaqur-rashids-projects.vercel.app" 
-];
-
 app.use(cors({
-  origin: function(origin, callback){
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
-      return callback(new Error(msg), false);
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (
+      origin === "http://localhost:3000" ||
+      origin.endsWith(".vercel.app")
+    ) {
+      return callback(null, true);
     }
-    return callback(null, true);
+
+    return callback(new Error("Not allowed by CORS"));
   },
-  credentials: true
+  credentials: true,
 }));
+
 
 app.use(express.json());
 
